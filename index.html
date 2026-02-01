@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de Passagens Aéreas Baratas</title>
+    <!-- Incluindo Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Incluindo EmailJS para alertas de e-mail -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Buscador de Passagens Aéreas Baratas</h1>
+        <p>Compare preços em tempo real e configure alertas para as melhores ofertas.</p>
+    </header>
+
+    <!-- Formulário de busca -->
+    <section id="search-form">
+        <form id="flight-search">
+            <div class="form-group">
+                <label for="origin">Origem:</label>
+                <input type="text" id="origin" placeholder="Digite o aeroporto de origem" autocomplete="off">
+                <div id="origin-suggestions" class="suggestions"></div> <!-- Auto-sugestão -->
+            </div>
+            <div class="form-group">
+                <label for="destination">Destino:</label>
+                <input type="text" id="destination" placeholder="Digite o aeroporto de destino" autocomplete="off">
+                <div id="destination-suggestions" class="suggestions"></div> <!-- Auto-sugestão -->
+            </div>
+            <div class="form-group">
+                <label for="departure-date">Data de Ida:</label>
+                <input type="date" id="departure-date">
+            </div>
+            <div class="form-group">
+                <label for="return-date">Data de Volta (opcional):</label>
+                <input type="date" id="return-date">
+            </div>
+            <button type="submit">Buscar Voos</button>
+        </form>
+    </section>
+
+    <!-- Filtros e Ordenação -->
+    <section id="filters">
+        <h2>Filtros e Ordenação</h2>
+        <select id="sort-by">
+            <option value="price">Ordenar por Preço</option>
+            <option value="duration">Ordenar por Duração</option>
+            <option value="stops">Ordenar por Escalas</option>
+        </select>
+        <input type="checkbox" id="direct-flights"> Apenas Voos Diretos
+        <input type="range" id="price-range" min="0" max="5000" value="5000">
+        <label for="price-range">Preço Máximo: R$ <span id="price-value">5000</span></label>
+    </section>
+
+    <!-- Resultados de Voos -->
+    <section id="results">
+        <h2>Resultados</h2>
+        <div id="flights-list"></div>
+    </section>
+
+    <!-- Gráfico de Variação de Preço -->
+    <section id="price-chart">
+        <h2>Variação de Preço por Data</h2>
+        <canvas id="priceChart"></canvas>
+    </section>
+
+    <!-- Configuração de Alertas -->
+    <section id="alerts">
+        <h2>Configure Alertas</h2>
+        <form id="alert-form">
+            <input type="email" id="alert-email" placeholder="Seu e-mail" required>
+            <input type="number" id="alert-price" placeholder="Preço alvo (R$)" required>
+            <button type="submit">Criar Alerta de E-mail</button>
+        </form>
+        <button id="push-alert">Ativar Notificações Push</button>
+    </section>
+
+    <!-- Scripts -->
+    <script src="data.js"></script> <!-- Dados mockados -->
+    <script src="script.js"></script> <!-- Lógica principal -->
+</body>
+</html>
